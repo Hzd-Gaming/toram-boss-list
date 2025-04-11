@@ -1,0 +1,208 @@
+@use '@/styles/scss/variables/colors' as kColor;
+@use '@/styles/scss/variables/breakpoints' as bp;
+
+.list_card {
+  border: thin solid kColor.$kColorNeutral--3;
+  box-shadow: kColor.$kColorPrimary--5 0px 2px 4px,
+    lighten(kColor.$kColorPrimary--5, 10%) 0px 7px 13px -3px,
+    lighten(kColor.$kColorPrimary--5, 20%) 0px -3px 0px inset;
+
+  // handle transition when switched
+  -webkit-transition: background-color 0.7s ease;
+  -moz-transition: background-color 0.7s ease;
+  -o-transition: background-color 0.7s ease;
+  transition: background-color 0.7s ease;
+
+  :where(.ant-card-head) {
+    background-color: kColor.$kColorPrimary--0 !important;
+
+    :where(.anticon) {
+      color: kColor.$kColorNeutral--5;
+      &:active {
+        color: kColor.$kColorPrimary--main;
+        // handle transform rotate when clicked
+        -webkit-transform: rotate(270deg) scale(2);
+        -moz-transform: rotate(270deg) scale(2);
+        -o-transform: rotate(270deg) scale(2);
+        transform: rotate(270deg) scale(2);
+
+        // handle transition when clicked
+        -webkit-transition: transform 0.4s;
+        -moz-transition: transform 0.4s;
+        -o-transition: transform 0.4s;
+        transition: transform 0.4s;
+      }
+
+      @media screen and (min-width: bp.$kBreakPoint--lg) {
+        &:hover {
+          color: kColor.$kColorPrimary--main;
+
+          // handle transform to bigger icon when hover
+          -webkit-transform: scale(2);
+          -moz-transform: scale(2);
+          -o-transform: scale(2);
+          transform: scale(2);
+        }
+      }
+    }
+  }
+  :where(.ant-card-body) {
+    padding: 12px 24px !important;
+    border-radius: 0px !important;
+  }
+  :where(.ant-card-actions) {
+    color: kColor.$kColorPrimary--main !important;
+    background-color: kColor.$kColorPrimary--0 !important;
+    :where(.anticon),
+    :where(.ant-space-item) {
+      color: kColor.$kColorPrimary--main !important;
+    }
+  }
+
+  &--dark {
+    border: thin solid kColor.$kColorNeutral--1;
+    box-shadow: kColor.$kColorPrimary--main 0px 2px 4px,
+      lighten(kColor.$kColorPrimary--main, 10%) 0px 7px 13px -3px,
+      lighten(kColor.$kColorPrimary--main, 20%) 0px -3px 0px inset;
+
+    :where(.ant-card-head) {
+      background-color: kColor.$kColorNeutral--5 !important;
+      border-bottom: thin solid kColor.$kColorNeutral--1 !important;
+      color: kColor.$kColorNeutral--1;
+      :where(.ant-typography),
+      :where(.ct_overflow_text) {
+        color: kColor.$kColorNeutral--1;
+      }
+      :where(.anticon) {
+        color: kColor.$kColorNeutral--1;
+        &:active {
+          color: kColor.$kColorPrimary--main;
+          // handle transform rotate when clicked
+          -webkit-transform: rotate(270deg) scale(2);
+          -moz-transform: rotate(270deg) scale(2);
+          -o-transform: rotate(270deg) scale(2);
+          transform: rotate(270deg) scale(2);
+
+          // handle transition when clicked
+          -webkit-transition: transform 0.4s;
+          -moz-transition: transform 0.4s;
+          -o-transition: transform 0.4s;
+          transition: transform 0.4s;
+        }
+
+        @media screen and (min-width: bp.$kBreakPoint--lg) {
+          &:hover {
+            color: kColor.$kColorPrimary--main;
+
+            // handle transform to bigger icon when hover
+            -webkit-transform: scale(2);
+            -moz-transform: scale(2);
+            -o-transform: scale(2);
+            transform: scale(2);
+          }
+        }
+      }
+    }
+    :where(.ant-card-body) {
+      background-color: kColor.$kColorNeutral--4 !important;
+      color: kColor.$kColorNeutral--1;
+      :where(.ant-typography) {
+        color: kColor.$kColorNeutral--1;
+      }
+    }
+    :where(.ant-card-actions) {
+      background-color: kColor.$kColorNeutral--5 !important;
+    }
+
+    :where(.ant-tabs-tab),
+    :where(.ant-tabs-content) {
+      color: kColor.$kColorNeutral--1 !important;
+    }
+  }
+
+  &__popover {
+    &--dark {
+      :where(.ant-popover-inner) {
+        background-color: kColor.$kColorNeutral--5 !important;
+      }
+      :where(.ant-popover-inner-content),
+      :where(.ant-popover-title) {
+        color: kColor.$kColorNeutral--1 !important;
+      }
+    }
+  }
+
+  :where(.ant-tabs-tab) {
+    margin: 0 0 0 8px !important;
+
+    &:first-child {
+      margin: 0px !important;
+    }
+  }
+
+  &__main_status_title_wrapper {
+    margin: 16px 0px;
+    border-top: solid kColor.$kColorNeutral--5;
+    border-bottom: solid kColor.$kColorNeutral--5;
+    &--dark {
+      border-top: solid kColor.$kColorNeutral--1;
+      border-bottom: solid kColor.$kColorNeutral--1;
+    }
+  }
+
+  // color based on active difficulties on tab panel
+  &:where(.list_card--normal) {
+    border: thin solid kColor.$kColorDifficulties--normal !important;
+    box-shadow: kColor.$kColorDifficulties--normal 0px 2px 4px,
+      lighten(kColor.$kColorDifficulties--normal, 10%) 0px 7px 13px -3px,
+      lighten(kColor.$kColorDifficulties--normal, 20%) 0px -3px 0px inset !important;
+
+    :where(.ant-tabs-tab-active > .ant-tabs-tab-btn) {
+      color: kColor.$kColorDifficulties--normal !important;
+    }
+
+    :where(.ant-tabs-ink-bar) {
+      background-color: kColor.$kColorDifficulties--normal !important;
+    }
+  }
+  &:where(.list_card--hard) {
+    border: thin solid kColor.$kColorDifficulties--hard !important;
+    box-shadow: kColor.$kColorDifficulties--hard 0px 2px 4px,
+      lighten(kColor.$kColorDifficulties--hard, 10%) 0px 7px 13px -3px,
+      lighten(kColor.$kColorDifficulties--hard, 20%) 0px -3px 0px inset !important;
+
+    :where(.ant-tabs-tab-active > .ant-tabs-tab-btn) {
+      color: kColor.$kColorDifficulties--hard !important;
+    }
+
+    :where(.ant-tabs-ink-bar) {
+      background-color: kColor.$kColorDifficulties--hard !important;
+    }
+  }
+  &:where(.list_card--nm) {
+    border: thin solid kColor.$kColorDifficulties--nm !important;
+    box-shadow: kColor.$kColorDifficulties--nm 0px 2px 4px,
+      lighten(kColor.$kColorDifficulties--nm, 10%) 0px 7px 13px -3px,
+      lighten(kColor.$kColorDifficulties--nm, 20%) 0px -3px 0px inset !important;
+    :where(.ant-tabs-tab-active > .ant-tabs-tab-btn) {
+      color: kColor.$kColorDifficulties--nm !important;
+    }
+
+    :where(.ant-tabs-ink-bar) {
+      background-color: kColor.$kColorDifficulties--nm !important;
+    }
+  }
+  &:where(.list_card--ulti) {
+    border: thin solid kColor.$kColorDifficulties--ulti !important;
+    box-shadow: kColor.$kColorDifficulties--ulti 0px 2px 4px,
+      lighten(kColor.$kColorDifficulties--ulti, 10%) 0px 7px 13px -3px,
+      lighten(kColor.$kColorDifficulties--ulti, 20%) 0px -3px 0px inset !important;
+    :where(.ant-tabs-tab-active > .ant-tabs-tab-btn) {
+      color: kColor.$kColorDifficulties--ulti !important;
+    }
+
+    :where(.ant-tabs-ink-bar) {
+      background-color: kColor.$kColorDifficulties--ulti !important;
+    }
+  }
+}

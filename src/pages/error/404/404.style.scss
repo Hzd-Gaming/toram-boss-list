@@ -1,0 +1,21 @@
+@use '@/styles/scss/variables/colors' as kColor;
+
+.error_404_page {
+  min-height: 100dvh;
+  display: flex;
+  background-color: kColor.$kColorBackground--dashboard;
+
+  &--dark {
+    background-color: kColor.$kColorNeutral--5;
+  }
+  &__illust {
+    margin: auto;
+
+    &--dark {
+      :where(.ant-result-title),
+      :where(.ant-result-subtitle) {
+        color: kColor.$kColorNeutral--1 !important;
+      }
+    }
+  }
+}

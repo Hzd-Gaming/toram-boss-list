@@ -1,0 +1,65 @@
+on:
+  push:
+    branches:
+      - main
+name: Deploy Production Web on push in branch main
+
+jobs:
+  deploy-production:
+    name: 'Deploy Production'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Use Node defined in .nvmrc (18.17.1)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.17.1'
+      - run: node --version
+
+      - uses: actions/checkout@v4
+      - name: Install Packages
+        run: npm ci
+
+      - name: See folder structure
+        run: |
+          pwd
+          ls
+
+      - name: Build project
+        run: npm run build
+
+      - name: Stash Build Project
+        run: |
+          git add .
+          git stash
+
+      - name: Checkout to pre-build-production branches
+        uses: actions/checkout@v4
+        with:
+          ref: 'pre-build-production'
+
+      - name: Sync Remote pre-build branch with New Created Build Folder
+        run: |
+          git config --local user.name "$(git log -n 1 --pretty=format:%an)"
+          git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
+          git update-ref -d HEAD
+          git reset --hard
+          git stash pop
+          mv ./build/* ./
+          rm -rf build node_modules .husky
+          git add .
+          git status
+          git commit -m "sync prebuild"
+          git push -f origin pre-build-production
+
+      - name: Checkout to production branches
+        uses: actions/checkout@v4
+        with:
+          ref: 'production'
+
+      - name: Sync Remote build-production with pre-build
+        run: |
+          git pull -X theirs origin pre-build-production --no-rebase --allow-unrelated-histories
+          git push origin production

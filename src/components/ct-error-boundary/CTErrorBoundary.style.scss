@@ -1,0 +1,29 @@
+@use '@/styles/scss/variables/colors' as kColor;
+@use '@/styles/scss/utils/margin';
+@use '@/styles/scss/utils/padding';
+@use '@/styles/scss/utils/borderRadius';
+
+.ct_error_boundary {
+  background-color: kColor.$kColorDanger--2;
+  border: 1px solid kColor.$kColorDanger--5;
+  @extend .p--4;
+  @extend .m--2;
+  @extend .radius--1;
+
+  &__title,
+  &__details,
+  &__error-text,
+  &__error-stack {
+    color: kColor.$kColorDanger--5;
+  }
+
+  &__details {
+    @extend .mt--1;
+    cursor: pointer;
+  }
+
+  &__error-text,
+  &__error-stack {
+    cursor: text;
+  }
+}

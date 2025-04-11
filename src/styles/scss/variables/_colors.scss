@@ -1,0 +1,39 @@
+// Colors
+// -----------------------------------------------------------
+// Color palettes defined for use throughout the design system.
+
+// CAUTION! If you want to change the value, or want to
+// add more colors, please sync up in `./src/constants/
+// theme/colors.constants.ts` too to prevent confusion.
+
+$kColorPrimary--main: #8f87f1;
+$kColorPrimary--0: #f5efff;
+$kColorPrimary--1: #e5d9f2;
+$kColorPrimary--2: #cdc1ff;
+$kColorPrimary--3: #8f87f1;
+$kColorPrimary--4: #4d55cc;
+$kColorPrimary--5: #210f37;
+
+$kColorDanger--main: #ee5046;
+$kColorDanger--0: #fff3f2;
+$kColorDanger--1: #fcdcda;
+$kColorDanger--2: #f8b9b5;
+$kColorDanger--3: #f1736b;
+$kColorDanger--4: #cd4239;
+$kColorDanger--5: #ac342d;
+
+$kColorNeutral--main: #31353b;
+$kColorNeutral--0: #ffffff;
+$kColorNeutral--1: #d6d7d8;
+$kColorNeutral--2: #adaeb1;
+$kColorNeutral--3: #838689;
+$kColorNeutral--4: #272a2f;
+$kColorNeutral--5: #141518;
+
+$kColorDifficulties--ez: $kColorPrimary--main;
+$kColorDifficulties--normal: #31a9e6;
+$kColorDifficulties--hard: #3ae7a5;
+$kColorDifficulties--nm: #e9d53f;
+$kColorDifficulties--ulti: #e95b3f;
+
+$kColorBackground--dashboard: $kColorNeutral--0;

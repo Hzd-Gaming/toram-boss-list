@@ -1,0 +1,38 @@
+@use '@/styles/scss/utils/margin';
+@use '@/styles/scss/utils/padding';
+@use '@/styles/scss/variables/colors' as kColor;
+
+.ct_layout_dashboard {
+  min-height: 100dvh;
+  background-color: kColor.$kColorBackground--dashboard;
+
+  &__content {
+    background-color: kColor.$kColorBackground--dashboard;
+
+    &--dark {
+      background-color: kColor.$kColorNeutral--4;
+    }
+    @extend .p--3;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__button {
+        width: 100%;
+      }
+    }
+  }
+
+  &__breadcrumb {
+    background-color: kColor.$kColorBackground--dashboard;
+    @extend .pt--3;
+    @extend .px--3;
+  }
+
+  &__root_skeleton {
+    display: flex !important;
+    align-items: center;
+  }
+}

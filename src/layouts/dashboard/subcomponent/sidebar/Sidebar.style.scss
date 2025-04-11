@@ -1,0 +1,112 @@
+@use '@/styles/scss/utils/padding';
+@use '@/styles/scss/variables/colors' as kColor;
+
+.ct_layout_dashboard__sidebar {
+  :where(.ant-drawer-header) {
+    // handle transition when switched
+    -webkit-transition: background-color 0.7s ease;
+    -moz-transition: background-color 0.7s ease;
+    -o-transition: background-color 0.7s ease;
+    transition: background-color 0.7s ease;
+
+    background-color: kColor.$kColorPrimary--0;
+    box-shadow: kColor.$kColorNeutral--2 0px 8px 24px;
+    padding: 15px 14px !important;
+    z-index: 1000;
+  }
+  :where(.ant-drawer-body) {
+    // handle transition when switched
+    -webkit-transition: background-color 0.7s ease;
+    -moz-transition: background-color 0.7s ease;
+    -o-transition: background-color 0.7s ease;
+    transition: background-color 0.7s ease;
+
+    :where(.ant-collapse-header) {
+      background-color: kColor.$kColorPrimary--0;
+      :where(.ant-collapse-header-text) {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &--dark {
+    :where(.ant-drawer-header) {
+      color: kColor.$kColorNeutral--1;
+      background-color: kColor.$kColorNeutral--5;
+      box-shadow: kColor.$kColorPrimary--main 0px 8px 24px;
+      border-bottom: thin solid kColor.$kColorPrimary--1 !important;
+    }
+
+    :where(.anticon-close) {
+      color: kColor.$kColorPrimary--3;
+    }
+
+    :where(.ant-drawer-body) {
+      // handle transition when switched
+      -webkit-transition: background-color 0.7s ease;
+      -moz-transition: background-color 0.7s ease;
+      -o-transition: background-color 0.7s ease;
+      transition: background-color 0.7s ease;
+
+      background-color: kColor.$kColorNeutral--4;
+      color: kColor.$kColorNeutral--1;
+
+      :where(.ant-collapse-header) {
+        background-color: kColor.$kColorNeutral--5;
+        :where(.ant-collapse-expand-icon) {
+          color: kColor.$kColorPrimary--main;
+        }
+        :where(.ant-collapse-header-text) {
+          color: kColor.$kColorNeutral--1;
+        }
+      }
+
+      :where(.ant-collapse-content) {
+        color: kColor.$kColorNeutral--1 !important;
+        background-color: kColor.$kColorNeutral--4 !important;
+      }
+    }
+
+    :where(.ant-radio-button-wrapper-block) {
+      background-color: kColor.$kColorNeutral--5;
+      color: kColor.$kColorNeutral--1;
+    }
+    :where(.ant-radio-button-wrapper-checked) {
+      background-color: kColor.$kColorPrimary--main;
+    }
+    :where(.ant-radio-button-checked) {
+      background-color: kColor.$kColorPrimary--main;
+      border-radius: 6px;
+      border: none;
+    }
+
+    :where(.ant-select-selection-item) {
+      background-color: transparent !important;
+      border-color: kColor.$kColorNeutral--1 !important;
+      color: kColor.$kColorNeutral--1 !important;
+    }
+    :where(.ant-select > .ant-select-selector),
+    :where(.ant-select-arrow) {
+      background-color: kColor.$kColorNeutral--5 !important;
+      color: kColor.$kColorNeutral--1 !important;
+    }
+    :where(.ant-select-focused > .ant-select-arrow),
+    :where(.ant-select-focused > .ant-select-selector) {
+      color: kColor.$kColorPrimary--3 !important;
+    }
+  }
+
+  &__select_popup {
+    &--dark {
+      background-color: kColor.$kColorNeutral--5;
+      :where(.ant-select-item) {
+        color: kColor.$kColorNeutral--1 !important;
+      }
+
+      :where(.ant-select-item-option-active) {
+        background-color: kColor.$kColorPrimary--3 !important;
+        color: kColor.$kColorNeutral--0 !important;
+      }
+    }
+  }
+}

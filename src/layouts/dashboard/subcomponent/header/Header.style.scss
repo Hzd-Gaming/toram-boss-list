@@ -1,0 +1,65 @@
+@use '@/styles/scss/utils/padding';
+@use '@/styles/scss/variables/colors' as kColor;
+
+$header_sidebar_color: kColor.$kColorPrimary--0;
+
+.ct_layout_dashboard__header {
+  align-items: center;
+  background-color: $header_sidebar_color;
+  border-bottom: thin solid kColor.$kColorNeutral--1;
+  box-shadow: kColor.$kColorNeutral--2 0px 8px 24px;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  // handle transition when switched
+  -webkit-transition: background-color 0.7s ease;
+  -moz-transition: background-color 0.7s ease;
+  -o-transition: background-color 0.7s ease;
+  transition: background-color 0.7s ease;
+
+  &--dark {
+    box-shadow: kColor.$kColorPrimary--main 0px 8px 24px;
+    border-bottom: thin solid kColor.$kColorPrimary--1;
+    background-color: kColor.$kColorNeutral--5;
+
+    :where(.ant-input-outlined),
+    :where(.ant-input-affix-wrapper),
+    :where(.ant-input-outlined),
+    :where(.ant-input) {
+      background-color: transparent !important;
+      border-color: kColor.$kColorNeutral--1 !important;
+      color: kColor.$kColorNeutral--1 !important;
+
+      &::placeholder {
+        background-color: transparent !important;
+        border-color: kColor.$kColorNeutral--3 !important;
+        color: kColor.$kColorNeutral--3 !important;
+      }
+
+      &:hover,
+      &:focus-within {
+        background-color: transparent !important;
+        border-color: kColor.$kColorPrimary--3 !important;
+        color: kColor.$kColorPrimary--3 !important;
+      }
+    }
+
+    :where(.ant-input-prefix),
+    :where(.ant-input-suffix > .ant-input-clear-icon) {
+      color: kColor.$kColorNeutral--1 !important;
+    }
+
+    :where(.ant-input-affix-wrapper-focused > .ant-input-prefix),
+    :where(
+        .ant-input-affix-wrapper-focused
+          > .ant-input-suffix
+          > .ant-input-clear-icon
+      ) {
+      color: kColor.$kColorPrimary--3 !important;
+    }
+  }
+  @extend .px--2;
+}
