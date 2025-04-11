@@ -23,6 +23,7 @@ export default ({ mode }: { mode: string }) => {
     optimizeDeps: {
       include: ['antd', 'react-router'],
     },
+    base: '/toram-boss-list',
     plugins: [
       react(),
       svgr({
