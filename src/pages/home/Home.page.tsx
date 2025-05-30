@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Col, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 import { orderBy } from 'lodash';
 import { useLocation } from 'react-router-dom';
 
@@ -19,6 +19,8 @@ const HomePage: React.FC = () => {
   const parsed = paramParsify(location?.search);
 
   const { isDarkMode } = useComponentStore((state) => state);
+
+  const [sliceEnd, setSliceEnd] = useState(10);
 
   const filteredData = useMemo(() => {
     // handle filter by category
@@ -45,10 +47,32 @@ const HomePage: React.FC = () => {
 
     return result;
   }, [parsed]);
+
+  const slicedData = useMemo(
+    () => [...filteredData]?.slice(0, sliceEnd),
+    [filteredData, sliceEnd]
+  );
+
+  const showLoadMore = useMemo(
+    () => slicedData?.length !== filteredData?.length,
+    [filteredData, slicedData]
+  );
+
+  const handleLoadMore = () => {
+    setSliceEnd((prev) => prev + 10);
+  };
+
+  // reset slice end whenever new filter is up
+  useEffect(() => {
+    if (location?.search) {
+      setSliceEnd(10);
+    }
+  }, [location]);
+
   return (
     <CTLayoutDashboard meta={kHomePageMeta}>
       <Row gutter={[16, 24]}>
-        {filteredData?.map((el, idx) => (
+        {slicedData?.map((el, idx) => (
           <Col
             key={`${el?.category}-${el?.name}-${idx}`}
             xs={24}
@@ -63,6 +87,13 @@ const HomePage: React.FC = () => {
           </Col>
         ))}
       </Row>
+      {showLoadMore && (
+        <Row justify="center" className="mt--5">
+          <Button ghost onClick={handleLoadMore}>
+            Load More
+          </Button>
+        </Row>
+      )}
     </CTLayoutDashboard>
   );
 };
